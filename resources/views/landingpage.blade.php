@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIMAKA - Bimbingan Akademik</title>
+    <title>BIMAKA - Sistem Bimbingan Akademik</title>
     @viteReactRefresh
     @vite(['resources/js/main.jsx'])
 </head>
