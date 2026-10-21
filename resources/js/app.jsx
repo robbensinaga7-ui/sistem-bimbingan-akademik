@@ -1,13 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/app.css";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+  const [role, setRole] = useState("mahasiswa"); // 'mahasiswa' atau 'dosen'
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    alert(`Berhasil masuk sebagai ${role === "mahasiswa" ? "Mahasiswa" : "Dosen Pembimbing"}!`);
+  };
+
+  // TAMPILAN HALAMAN LOGIN DENGAN ANIMASI
+  if (currentPage === "login") {
+    return (
+      <div className="login-page-container">
+        <div className="login-card">
+          <div className="login-header">
+            <div className="login-logo">B</div>
+            <h2>Masuk ke BIMAKA</h2>
+            <p>Sistem Informasi Bimbingan Akademik</p>
+          </div>
+
+          <div className="role-selector">
+            <button
+              type="button"
+              className={`role-btn ${role === "mahasiswa" ? "active" : ""}`}
+              onClick={() => setRole("mahasiswa")}
+            >
+              Mahasiswa
+            </button>
+            <button
+              type="button"
+              className={`role-btn ${role === "dosen" ? "active" : ""}`}
+              onClick={() => setRole("dosen")}
+            >
+              Dosen Pembimbing
+            </button>
+          </div>
+
+          <form onSubmit={handleLoginSubmit}>
+            <div className="form-group">
+              <label>{role === "mahasiswa" ? "NIM (Nomor Induk Mahasiswa)" : "NIDN / NIP Dosen"}</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder={role === "mahasiswa" ? "Contoh: 3312511075" : "Contoh: 0012345678"}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Kata Sandi (Password)</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Masukkan kata sandi akun"
+                required
+              />
+            </div>
+
+            <div className="form-options">
+              <label className="remember-me">
+                <input type="checkbox" /> Ingat saya
+              </label>
+              <a href="#forgot" className="forgot-password">Lupa sandi?</a>
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Masuk Sekarang
+            </button>
+          </form>
+
+          <div className="back-to-home">
+            <button onClick={() => setCurrentPage("home")}>
+              ← Kembali ke Beranda Utama
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // TAMPILAN LANDING PAGE UTAMA
   return (
     <div className="landing-page">
       {/* ================= NAVBAR ================= */}
       <nav className="navbar">
         <div className="container navbar-content">
-          <div className="logo">
+          <div className="logo" onClick={() => setCurrentPage("home")}>
             <div className="logo-icon">B</div>
             <div className="logo-text">
               <h2>BIMAKA</h2>
@@ -22,9 +102,9 @@ function App() {
             <a href="#alur">Alur</a>
           </div>
 
-          <a href="/login" className="login-button">
+          <button onClick={() => setCurrentPage("login")} className="login-button" style={{ border: "none", cursor: "pointer" }}>
             Masuk
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -50,13 +130,13 @@ function App() {
             </p>
 
             <div className="hero-buttons">
-              <a href="/login" className="primary-button">
+              <button onClick={() => setCurrentPage("login")} className="primary-button" style={{ border: "none", cursor: "pointer" }}>
                 Mulai Bimbingan
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
-              </a>
+              </button>
 
               <a href="#tentang" className="secondary-button">
                 Pelajari Selengkapnya
@@ -129,7 +209,6 @@ function App() {
               </div>
             </div>
 
-            {/* FLOATING DECORATIVE BADGE */}
             <div className="floating-badge badge-top">
               <span className="icon">🎉</span>
               <div>
@@ -178,6 +257,126 @@ function App() {
               <p>
                 Informasi bimbingan tersimpan secara terpusat sehingga proses
                 monitoring dan rekap data menjadi lebih mudah dan akurat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FITUR UNGGULAN ================= */}
+      <section className="features-section" id="fitur">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">FITUR UTAMA</span>
+            <h2>Layanan Unggulan <span>BIMAKA</span></h2>
+            <p>
+              Berbagai fitur praktis yang dibuat untuk mempercepat dan mempermudah
+              proses bimbingan akademik.
+            </p>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">📅</div>
+              <h3>Penjadwalan Fleksibel</h3>
+              <p>
+                Mahasiswa dapat melihat slot waktu dosen yang tersedia dan memilih
+                jadwal bimbingan dengan fleksibel.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">🔔</div>
+              <h3>Notifikasi Real-Time</h3>
+              <p>
+                Dapatkan pembaruan langsung terkait status pengajuan bimbingan,
+                apakah disetujui, diubah, atau ditolak.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">📁</div>
+              <h3>Pengelolaan Dokumen</h3>
+              <p>
+                Unggah draft tugas akhir atau dokumen akademik dengan aman
+                untuk ditinjau langsung oleh Dosen Pembimbing.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">💬</div>
+              <h3>Catatan Bimbingan</h3>
+              <p>
+                Simpan dan catat setiap hasil masukan dari dosen pada setiap sesi
+                bimbingan agar revisi lebih terstruktur.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">📈</div>
+              <h3>Monitoring Progres</h3>
+              <p>
+                Pantau riwayat sesi bimbingan yang telah diselesaikan hingga
+                mencapai target kelulusan bimbingan.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon-wrapper">🔒</div>
+              <h3>Akses Terintegrasi</h3>
+              <p>
+                Satu akun terintegrasi secara langsung untuk Admin, Dosen Pembimbing,
+                dan Mahasiswa secara aman.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= ALUR BIMBINGAN ================= */}
+      <section className="workflow-section" id="alur">
+        <div className="container">
+          <div className="section-heading">
+            <span className="section-label">ALUR PENGGUNAAN</span>
+            <h2>Langkah Mudah <span>Bimbingan</span></h2>
+            <p>
+              Proses bimbingan dapat diselesaikan hanya melalui 4 langkah sederhana.
+            </p>
+          </div>
+
+          <div className="workflow-grid">
+            <div className="workflow-card">
+              <div className="step-number">01</div>
+              <h3>Login Akun</h3>
+              <p>
+                Masuk ke portal BIMAKA menggunakan akun mahasiswa atau dosen yang
+                telah terdaftar.
+              </p>
+            </div>
+
+            <div className="workflow-card">
+              <div className="step-number">02</div>
+              <h3>Ajukan Bimbingan</h3>
+              <p>
+                Pilih Dosen Pembimbing, tentukan tanggal serta jam bimbingan, dan
+                unggah dokumen pendukung.
+              </p>
+            </div>
+
+            <div className="workflow-card">
+              <div className="step-number">03</div>
+              <h3>Konfirmasi Dosen</h3>
+              <p>
+                Dosen akan memeriksa pengajuan dan memberikan konfirmasi atau penyesuaian
+                jadwal.
+              </p>
+            </div>
+
+            <div className="workflow-card">
+              <div className="step-number">04</div>
+              <h3>Sesi Bimbingan</h3>
+              <p>
+                Laksanakan bimbingan sesuai jadwal dan simpan hasil catatan bimbingan di portal.
               </p>
             </div>
           </div>
