@@ -2,26 +2,48 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('app');
-});
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-Route::get('/', function () {
-    return view('landingpage');
-});
-
-<<<<<<< HEAD
-// Halaman Dashboard Admin
+// Halaman Utama / Dashboard Admin
 Route::get('/admin', function () {
     return view('admin');
 });
 
-// Halaman Users Admin
+// Halaman Data User
 Route::get('/admin/users', function () {
     return view('users');
-=======
-// Route untuk halaman login (bisa menggunakan view blade yang memuat komponen React login)
-Route::get('/login', function () {
-    return view('landingpage'); // atau view khusus login.blade.php
->>>>>>> ddef4fe40cd939a8e023a682113b973cdd40678e
+});
+
+// Halaman Jadwal
+Route::get('/admin/jadwal', function () {
+    return view('jadwal');
+});
+
+// Halaman Pengajuan Bimbingan
+Route::get('/admin/pengajuan', function () {
+    return view('pengajuan');
+});
+
+// Halaman Laporan
+Route::get('/admin/laporan', function () {
+    return view('laporan');
+});
+
+// Halaman Notifikasi
+Route::get('/admin/notifikasi', function () {
+    return view('notifikasi');
+});
+
+// Halaman Pengaturan
+Route::get('/admin/pengaturan', function () {
+    return view('pengaturan');
 });
