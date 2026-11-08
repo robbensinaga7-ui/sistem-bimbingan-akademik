@@ -3,91 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - BIMAKA</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Panel Kontrol Administrator - BIMAKA</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-gray-100 font-sans text-slate-800">
-    <div class="flex h-screen overflow-hidden">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
         
-        <!-- SIDEBAR UTAMA -->
-        <aside class="w-64 bg-[#1a2238] p-5 text-slate-300 flex flex-col justify-between shrink-0 shadow-lg">
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .animate-fade-in { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-float { animation: floatAnim 4s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px -5px rgba(30, 64, 175, 0.12), 0 8px 10px -6px rgba(30, 64, 175, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased overflow-hidden">
+
+    <div class="flex h-screen">
+        
+        <!-- SIDEBAR UTAMA (Nama menu disamakan persis seperti di Users: Dashboard, Data User, Jadwal, Pengajuan Bimbingan, Laporan) -->
+        <aside class="w-72 bg-[#1a2238] text-white flex flex-col justify-between hidden md:flex shadow-2xl relative z-20 border-r border-slate-800">
             <div>
-                <!-- Logo Aplikasi -->
-                <div class="mb-8 flex items-center gap-3 px-2">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold text-lg shadow">
-                        B
+                <!-- Brand Header -->
+                <div class="flex items-center gap-3.5 px-7 py-8 border-b border-slate-700/50">
+                    <div class="bg-blue-600 text-white font-extrabold w-11 h-11 rounded-2xl flex items-center justify-center text-xl shadow-md shadow-blue-600/30">B</div>
+                    <div>
+                        <h1 class="font-extrabold text-base tracking-wider text-white">BIMAKA</h1>
+                        <span class="text-[10px] text-blue-400 font-bold tracking-widest uppercase">Bimbingan Akademik</span>
                     </div>
-                    <span class="text-xl font-bold tracking-wide text-white">BIMAKA</span>
                 </div>
 
-                <!-- Menu Navigasi Sidebar -->
-                <nav class="space-y-1.5 text-sm font-medium">
-                    <a href="/admin" class="flex items-center gap-3 rounded-xl bg-blue-600 px-3.5 py-2.5 text-xs text-white transition">
-                        <i data-lucide="layout-grid" class="h-4 w-4"></i>
-                        <span>Dashboard</span>
+                <!-- Navigasi Menu -->
+                <nav class="px-4 py-6 space-y-1.5">
+                    <a href="/admin" class="flex items-center gap-3.5 px-4 py-3.5 bg-blue-600 text-white rounded-2xl font-semibold shadow-md shadow-blue-600/20 text-sm">
+                        <span class="text-lg">📊</span> Dashboard
                     </a>
-                    <a href="/admin/users" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="users" class="h-4 w-4"></i>
-                        <span>Data User</span>
+                    <a href="/admin/users" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
+                        <span class="text-lg">👥</span> Data User
                     </a>
-                    <a href="/admin/jadwal" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="calendar" class="h-4 w-4"></i>
-                        <span>Jadwal</span>
+                    <a href="/admin/jadwal" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
+                        <span class="text-lg">📅</span> Jadwal
                     </a>
-                    <a href="/admin/pengajuan" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="file-text" class="h-4 w-4"></i>
-                        <span>Pengajuan Bimbingan</span>
+                    <a href="/admin/pengajuan" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
+                        <span class="text-lg">📂</span> Pengajuan Bimbingan
                     </a>
-                    <a href="/admin/laporan" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="bar-chart-2" class="h-4 w-4"></i>
-                        <span>Laporan</span>
-                    </a>
-                    <a href="/admin/notifikasi" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="bell" class="h-4 w-4"></i>
-                        <span>Notifikasi</span>
-                    </a>
-                    <a href="/admin/pengaturan" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-800/60 hover:text-white transition">
-                        <i data-lucide="settings" class="h-4 w-4"></i>
-                        <span>Pengaturan</span>
+                    <a href="/admin/laporan" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
+                        <span class="text-lg">📈</span> Laporan
                     </a>
                 </nav>
             </div>
 
-            <!-- Tombol Logout -->
-            <div>
-                <a href="/logout" class="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs text-red-400 hover:bg-red-500/10 transition">
-                    <i data-lucide="log-out" class="h-4 w-4"></i>
-                    <span>Logout</span>
+            <!-- Tombol Keluar Portal -->
+            <div class="p-5 border-t border-slate-700/50">
+                <a href="{{ url('/') }}" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-2xl font-semibold transition text-sm">
+                    <span class="text-lg">🚪</span> Keluar Portal
                 </a>
             </div>
         </aside>
 
-        <!-- KONTEN UTAMA DASHBOARD -->
-        <main class="flex-1 overflow-y-auto">
-            <!-- Header Atas -->
-            <header class="h-16 bg-white border-b border-gray-200 px-8 flex items-center justify-between sticky top-0 z-10">
-                <h1 class="text-base font-bold text-gray-800">Dashboard Utama</h1>
-                <span class="bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-                    Admin Utama
-                </span>
-            </header>
-
-            <!-- Isi Halaman Dashboard (Diberi padding lebih rapat dan ada teks sapaan atas) -->
-            <div class="px-8 py-6 space-y-5">
+        <!-- KONTEN UTAMA -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- NAVBAR / HEADER ATAS (Ukuran padding py-4, tinggi tombol, dan teks kiri-kanan disamakan persis dengan Users) -->
+            <header class="bg-white border-b border-slate-200/80 px-8 py-4 flex justify-between items-center sticky top-0 z-10 shadow-sm">
+                <div class="text-xs font-bold text-slate-400 tracking-wide">
+                    🖥️ PORTAL AKADEMIK • TAHUN AJARAN 2025/2026 GENAP
+                </div>
                 
-                <!-- Teks Sambutan di Bagian Atas agar Tidak Kosong -->
-                <div class="flex items-center justify-between bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100">
-                    <div>
-                        <h2 class="text-sm font-bold text-gray-800">Selamat Datang kembali, Admin Utama! 👋</h2>
-                        <p class="text-xs text-gray-400 mt-0.5">Berikut adalah ringkasan aktivitas dan statistik sistem bimbingan akademik saat ini.</p>
+                <div class="flex items-center gap-4">
+                    <button class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition">🔍</button>
+                    <button class="w-10 h-10 rounded-full bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 transition">🔔</button>
+
+                    <!-- Info Profil Admin (Menggunakan session unik agar tidak tertukar) -->
+                    <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
+                        <div class="text-right hidden sm:block">
+                            <p class="font-bold text-sm text-slate-800">{{ session('admin_nama', session('nama', 'Admin Akademik')) }}</p>
+                            <p class="text-[11px] text-slate-400">admin@bimaka.ac.id</p>
+                        </div>
+                        <div class="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center font-bold text-sm shadow">
+                            {{ substr(session('admin_nama', session('nama', 'A')), 0, 1) }}
+                        </div>
                     </div>
-                    <span class="text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl">Jumat, 23 Okt 2026</span>
                 </div>
             </header>
 
+            <!-- ISI KONTEN DASHBOARD ASLI -->
             <div class="p-8 space-y-8 animate-fade-in max-w-7xl mx-auto w-full">
                 
                 <!-- Welcome Banner -->
@@ -96,88 +117,127 @@
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/30 border border-blue-400/30 text-blue-200 text-xs font-semibold">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Sistem Aktif & Terhubung
                         </div>
-                       <h2 class="text-3xl font-extrabold tracking-tight">Selamat Datang Kembali, {{ session('admin_nama', session('nama', 'Admin')) }}! ⚡</h2>
+                        <h2 class="text-3xl font-extrabold tracking-tight">Selamat Datang Kembali, {{ session('admin_nama', session('nama', 'Admin')) }}! ⚡</h2>
                         <p class="text-blue-100 text-sm max-w-xl leading-relaxed">Kelola data akun pengguna, validasi jadwal konsultasi, dan pantau seluruh aktivitas bimbingan akademik mahasiswa Polibatam secara terpusat.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-wider">TOTAL DOSEN</div>
-                        <div class="text-3xl font-bold text-emerald-600">1</div>
+                    <div class="hidden md:flex text-6xl opacity-90 animate-float bg-white/10 p-6 rounded-3xl backdrop-blur-md shadow-inner border border-white/10">
+                        🎓
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-wider">BIMBINGAN PENDING</div>
-                        <div class="text-3xl font-bold text-amber-500">1</div>
+                    <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                </div>
+
+                <!-- Statistik Cards (Dinamis dari Database) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-7 rounded-3xl shadow-sm border border-slate-200/80 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-2xl group-hover:bg-blue-100 transition-all"></div>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-center mb-3">
+                                <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Mahasiswa Terdaftar</p>
+                                <span class="p-2.5 bg-blue-50 text-blue-600 rounded-2xl text-lg shadow-sm">👨‍🎓</span>
+                            </div>
+                            <h3 class="text-4xl font-extrabold text-slate-900 tracking-tight">{{ $totalMahasiswa ?? 0 }}</h3>
+                            <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-slate-500 font-bold bg-slate-100 px-2.5 py-1 rounded-xl">
+                                <span>ℹ️</span> {{ (($totalMahasiswa ?? 0) > 0) ? 'Data aktif database' : 'Belum ada mahasiswa terdaftar' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-7 rounded-3xl shadow-sm border border-slate-200/80 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-2xl group-hover:bg-indigo-100 transition-all"></div>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-center mb-3">
+                                <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Dosen Pembimbing</p>
+                                <span class="p-2.5 bg-indigo-50 text-indigo-600 rounded-2xl text-lg shadow-sm">👩‍🏫</span>
+                            </div>
+                            <h3 class="text-4xl font-extrabold text-slate-900 tracking-tight">{{ $totalDosen ?? 0 }}</h3>
+                            <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-slate-500 font-bold bg-slate-100 px-2.5 py-1 rounded-xl">
+                                <span>ℹ️</span> {{ (($totalDosen ?? 0) > 0) ? 'Data aktif database' : 'Belum ada dosen terdaftar' }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-7 rounded-3xl shadow-sm border border-slate-200/80 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-2xl group-hover:bg-amber-100 transition-all"></div>
+                        <div class="relative z-10">
+                            <div class="flex justify-between items-center mb-3">
+                                <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Pengajuan Bimbingan Aktif</p>
+                                <span class="p-2.5 bg-amber-50 text-amber-600 rounded-2xl text-lg shadow-sm">📂</span>
+                            </div>
+                            <h3 class="text-4xl font-extrabold text-slate-900 tracking-tight">{{ $pengajuanAktif ?? 0 }}</h3>
+                            <div class="mt-3 inline-flex items-center gap-1.5 text-xs text-slate-500 font-bold bg-slate-100 px-2.5 py-1 rounded-xl">
+                                <span>ℹ️</span> {{ (($pengajuanAktif ?? 0) > 0) ? 'Sedang berjalan' : 'Belum ada pengajuan aktif' }}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Bagian Aktivitas Terbaru Sistem -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <h2 class="text-lg font-bold text-gray-800 mb-4">Aktivitas Terbaru Sistem</h2>
-                    
-                    <div class="space-y-3">
-                        <!-- Aktivitas 1 -->
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                            <div>
-                                <p class="text-sm font-bold text-gray-800">Robben Sinaga mengajukan bimbingan baru</p>
-                                <p class="text-xs text-gray-400 mt-0.5">23 Oktober 2026 - 10:30 WIB</p>
-                            </div>
-                            <span class="bg-amber-100 text-amber-700 text-xs px-3 py-1 rounded-full font-semibold">Menunggu</span>
+                <!-- Tabel Pengajuan Masuk Terbaru -->
+                <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 overflow-hidden">
+                    <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                        <div>
+                            <h3 class="font-extrabold text-lg text-slate-900">Daftar Pengajuan Masuk Terbaru</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Aktivitas pengajuan bimbingan real-time dari sistem mahasiswa.</p>
                         </div>
-
-                        <!-- Aktivitas 2 -->
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                            <div>
-                                <p class="text-sm font-bold text-gray-800">Siti Aisyah mengunggah revisi BAB II</p>
-                                <p class="text-xs text-gray-400 mt-0.5">22 Oktober 2026 - 14:15 WIB</p>
-                            </div>
-                            <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">Diperbarui</span>
-                        </div>
-
-                        <!-- Aktivitas 3 -->
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                            <div>
-                                <p class="text-sm font-bold text-gray-800">Dr. Budi Santoso menyetujui jadwal bimbingan</p>
-                                <p class="text-xs text-gray-400 mt-0.5">21 Oktober 2026 - 09:00 WIB</p>
-                            </div>
-                            <span class="bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full font-semibold">Selesai</span>
-                        </div>
+                        <span class="text-xs bg-slate-100 text-slate-600 border border-slate-200 px-3.5 py-1.5 rounded-2xl font-bold tracking-wide">Real-time Database</span>
                     </div>
-                </div>
-
-                <!-- Tambahan Konten Ringan di Bawah -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="text-sm font-bold text-gray-800 mb-3">Statistik Ringkas Peran Pengguna</h3>
-                        <div class="space-y-2 text-xs text-gray-600">
-                            <div class="flex justify-between py-1.5 border-b border-gray-100">
-                                <span>Mahasiswa Aktif</span>
-                                <span class="font-bold text-gray-800">2 Orang</span>
-                            </div>
-                            <div class="flex justify-between py-1.5 border-b border-gray-100">
-                                <span>Dosen Pembimbing</span>
-                                <span class="font-bold text-gray-800">1 Orang</span>
-                            </div>
-                            <div class="flex justify-between py-1.5">
-                                <span>Administrator Sistem</span>
-                                <span class="font-bold text-gray-800">1 Orang</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="text-sm font-bold text-gray-800 mb-3">Informasi Sistem Akademik</h3>
-                        <p class="text-xs text-gray-500 leading-relaxed">
-                            Sistem Bimbingan Akademik (BIMAKA) berjalan dengan normal. Seluruh sinkronisasi data user dan pengajuan bimbingan terhubung langsung ke database utama.
-                        </p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-slate-50/80 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-100 font-bold">
+                                    <th class="px-8 py-4">Mahasiswa</th>
+                                    <th class="px-6 py-4">Dosen Pembimbing</th>
+                                    <th class="px-6 py-4">Waktu Konsultasi</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-8 py-4 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(isset($daftarPengajuan) && count($daftarPengajuan) > 0)
+                                    @foreach($daftarPengajuan as $item)
+                                    <tr class="hover:bg-slate-50/50 transition border-b border-slate-100">
+                                        <td class="px-8 py-4">
+                                            <p class="font-bold text-slate-900">{{ $item->nama_mahasiswa }}</p>
+                                            <p class="text-xs text-slate-400">NIM: {{ $item->nim }}</p>
+                                        </td>
+                                        <td class="px-6 py-4 font-medium text-slate-700">{{ $item->nama_dosen }}</td>
+                                        <td class="px-6 py-4 text-xs text-slate-500 font-medium">{{ $item->waktu_konsultasi }}</td>
+                                        <td class="px-6 py-4">
+    @if(strtolower($item->status) == 'disetujui')
+        <span class="px-3 py-1 bg-emerald-50 text-emerald-600 text-xs font-bold rounded-full">Disetujui</span>
+    @elseif(strtolower($item->status) == 'ditolak')
+        <span class="px-3 py-1 bg-red-50 text-red-600 text-xs font-bold rounded-full">Ditolak</span>
+    @elseif(strtolower($item->status) == 'selesai')
+        <span class="px-3 py-1 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-full">Selesai</span>
+    @elseif(strtolower($item->status) == 'dibatalkan')
+        <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full">Dibatalkan</span>
+    @else
+        <span class="px-3 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-full">Menunggu</span>
+    @endif
+</td>
+                                        <td class="px-8 py-4 text-center">
+                                            <a href="#" class="text-blue-600 font-bold text-xs hover:underline">Kelola</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5" class="px-8 py-12 text-center text-slate-400 font-medium">
+                                            <div class="flex flex-col items-center justify-center space-y-2">
+                                                <span class="text-3xl">📭</span>
+                                                <p>Belum ada pengajuan bimbingan yang masuk dari sistem.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
             </div>
         </main>
+
     </div>
 
-    <!-- Script Inisialisasi Ikon Lucide -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
