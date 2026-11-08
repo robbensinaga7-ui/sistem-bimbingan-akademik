@@ -86,16 +86,18 @@
                     </div>
                     <span class="text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl">Jumat, 23 Okt 2026</span>
                 </div>
+            </header>
 
-                <!-- 4 Kartu Statistik Atas -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-wider">TOTAL PENGGUNA</div>
-                        <div class="text-3xl font-bold text-gray-800">4</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-wider">TOTAL MAHASISWA</div>
-                        <div class="text-3xl font-bold text-blue-600">2</div>
+            <div class="p-8 space-y-8 animate-fade-in max-w-7xl mx-auto w-full">
+                
+                <!-- Welcome Banner -->
+                <div class="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white p-8 rounded-3xl shadow-xl shadow-blue-900/10 flex justify-between items-center">
+                    <div class="relative z-10 space-y-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/30 border border-blue-400/30 text-blue-200 text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Sistem Aktif & Terhubung
+                        </div>
+                       <h2 class="text-3xl font-extrabold tracking-tight">Selamat Datang Kembali, {{ session('admin_nama', session('nama', 'Admin')) }}! ⚡</h2>
+                        <p class="text-blue-100 text-sm max-w-xl leading-relaxed">Kelola data akun pengguna, validasi jadwal konsultasi, dan pantau seluruh aktivitas bimbingan akademik mahasiswa Polibatam secara terpusat.</p>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                         <div class="text-xs text-gray-400 font-bold mb-1 uppercase tracking-wider">TOTAL DOSEN</div>
