@@ -25,26 +25,26 @@
 
             <nav class="space-y-1.5">
                 <a href="{{ route('student.dashboard') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">📊</span> Dashboard
+                    <span class="text-lg"></span> Dashboard
                 </a>
                 <a href="{{ route('mahasiswa.daftar-bimbingan') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">📅</span> Daftar Bimbingan
+                    <span class="text-lg"></span> Daftar Bimbingan
                 </a>
                 <a href="{{ route('mahasiswa.jadwal') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">⏰</span> Jadwal
+                    <span class="text-lg"></span> Jadwal
                 </a>
                 <a href="{{ route('mahasiswa.status-pengajuan') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-blue-600 text-white font-semibold text-sm shadow-md shadow-blue-600/30">
-                    <span class="text-lg">📋</span> Status Pengajuan
+                    <span class="text-lg"></span> Status Pengajuan
                 </a>
                 <a href="{{ route('mahasiswa.notifikasi') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">🔔</span> Notifikasi
+                    <span class="text-lg"></span> Notifikasi
                 </a>
             </nav>
         </div>
 
         <div>
             <a href="{{ url('/') }}" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-2xl font-semibold transition text-sm">
-                <span class="text-lg">🚪</span> Logout
+                <span class="text-lg"></span> Keluar
             </a>
         </div>
     </aside>

@@ -25,26 +25,26 @@
 
             <nav class="space-y-1.5">
                 <a href="{{ route('dosen.dashboard') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">📊</span> Dashboard
+                    <span class="text-lg"></span> Dashboard
                 </a>
                 <a href="{{ route('dosen.jadwal') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl bg-blue-600 text-white font-semibold text-sm shadow-md shadow-blue-600/30">
-                    <span class="text-lg">📅</span> Jadwal Saya
+                    <span class="text-lg"></span> Jadwal Saya
                 </a>
                 <a href="{{ route('dosen.pengajuan') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">📋</span> Pengajuan Bimbingan
+                    <span class="text-lg"></span> Pengajuan Bimbingan
                 </a>
                 <a href="{{ route('dosen.catatan') }}" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">⏱️</span> Riwayat Bimbingan
+                    <span class="text-lg">⏱</span> Riwayat Bimbingan
                 </a>
                 <a href="#" class="flex items-center gap-3.5 px-4 py-3 rounded-2xl text-slate-400 hover:bg-slate-800 hover:text-white transition text-sm font-medium">
-                    <span class="text-lg">🔔</span> Notifikasi
+                    <span class="text-lg"></span> Notifikasi
                 </a>
             </nav>
         </div>
 
         <div>
             <a href="{{ url('/') }}" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-2xl font-semibold transition text-sm">
-                <span class="text-lg">🚪</span> Keluar Portal
+                <span class="text-lg"></span> Keluar Portal
             </a>
         </div>
     </aside>

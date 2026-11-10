@@ -30,19 +30,19 @@
                 <!-- Navigasi Menu -->
                 <nav class="px-4 py-6 space-y-1.5">
                     <a href="/admin" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
-                        <span class="text-lg">📊</span> Dashboard
+                        <span class="text-lg"></span> Dashboard
                     </a>
                     <a href="/admin/users" class="flex items-center gap-3.5 px-4 py-3.5 bg-blue-600 text-white rounded-2xl font-semibold shadow-md shadow-blue-600/20 text-sm">
-                        <span class="text-lg">👥</span> Data User
+                        <span class="text-lg"></span> Data User
                     </a>
                     <a href="/admin/jadwal" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
-                        <span class="text-lg">📅</span> Jadwal
+                        <span class="text-lg"></span> Jadwal
                     </a>
                     <a href="/admin/pengajuan" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
-                        <span class="text-lg">📂</span> Pengajuan Bimbingan
+                        <span class="text-lg"></span> Pengajuan Bimbingan
                     </a>
                     <a href="/admin/laporan" class="flex items-center gap-3.5 px-4 py-3.5 text-slate-300 hover:bg-slate-800/80 hover:text-white rounded-2xl font-medium transition text-sm">
-                        <span class="text-lg">📈</span> Laporan
+                        <span class="text-lg"></span> Laporan
                     </a>
             
                 </nav>
@@ -51,7 +51,7 @@
             <!-- Tombol Keluar Portal -->
             <div class="p-5 border-t border-slate-700/50">
                 <a href="{{ url('/') }}" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-2xl font-semibold transition text-sm">
-                    <span class="text-lg">🚪</span> Keluar Portal
+                    <span class="text-lg"></span> Keluar Portal
                 </a>
             </div>
         </aside>
