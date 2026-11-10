@@ -27,7 +27,7 @@ export default function App() {
               onClick={() => { window.location.href = "/login"; }} 
               className="login-button animated-btn"
             >
-              Login
+              Masuk
             </button>
             <div className="user-avatar-btn" onClick={() => { window.location.href = "/login"; }}>
               <span>👤</span>
